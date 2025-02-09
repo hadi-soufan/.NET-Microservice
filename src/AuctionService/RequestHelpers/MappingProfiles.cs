@@ -1,0 +1,36 @@
+﻿using AuctionService.Models.Entities.Auctions;
+using AuctionService.Models.Entities.Items;
+using AuctionService.Models.Enums;
+using AuctionService.Models.Records.Auctions;
+using Mapster;
+
+namespace AuctionService.RequestHelpers
+{
+    public class MappingProfiles : IRegister
+    {
+        public void Register(TypeAdapterConfig config)
+        {
+            config.NewConfig<Auction, AuctionRecord>()
+                .Map(dest => dest.Status, src => src.Status)
+                .Map(dest => dest.Make, src => src.Item.Make)
+                .Map(dest => dest.Model, src => src.Item.Model)
+                .Map(dest => dest.Year, src => src.Item.Year)
+                .Map(dest => dest.Color, src => src.Item.Color)
+                .Map(dest => dest.Mileage, src => src.Item.Mileage)
+                .Map(dest => dest.ImageUrl, src => src.Item.ImageUrl);
+
+            config.NewConfig<CreateAuctionRecord, Auction>()
+                .Map(dest => dest.Status, _ => Status.Live)
+                .Map(dest => dest.Item, src => new Item
+                {
+                    Id = Guid.NewGuid(),
+                    Make = src.Make,
+                    Model = src.Model,
+                    Year = src.Year,
+                    Color = src.Color,
+                    Mileage = src.Mileage,
+                    ImageUrl = src.ImageUrl
+                });
+        }
+    }
+}
