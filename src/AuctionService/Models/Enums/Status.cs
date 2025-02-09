@@ -4,6 +4,6 @@
     {
         Live,
         Finished,
-        ReservedNotMeet,
+        ReserveNotMet,
     }
 }
