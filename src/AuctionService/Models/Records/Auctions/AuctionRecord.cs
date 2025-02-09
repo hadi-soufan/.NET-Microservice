@@ -15,6 +15,8 @@
         int Year,
         string Color,
         int Mileage,
-        string ImageUrl
+        string ImageUrl,
+        DateTime CreatedAt,
+        DateTime? UpdatedAt
     );
 }
