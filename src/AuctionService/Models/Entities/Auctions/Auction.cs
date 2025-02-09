@@ -20,7 +20,6 @@ namespace AuctionService.Models.Entities.Auctions
         [Column("seller")]
         public string Seller { get; set; }
 
-        [Required]
         [Column("winner")]
         public string Winner { get; set; }
 

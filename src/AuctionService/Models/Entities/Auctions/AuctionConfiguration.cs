@@ -20,13 +20,6 @@ namespace AuctionService.Models.Entities.Auctions
             builder.Property(a => a.Winner)
                 .HasMaxLength(DbConstants.VARCHAR_STRING_LENGTH_50);
 
-            builder.Property(i => i.CreatedAt)
-               .HasDefaultValueSql(DbConstants.CURRENT_TIMESTAMP);
-
-            builder.Property(i => i.IsDeleted)
-                .HasDefaultValue(DbConstants.DEFAULT_IS_FALSE);
-
-
             // Relationship
             builder.HasOne(a => a.Item)
                 .WithOne(i => i.Auction)

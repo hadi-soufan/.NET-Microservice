@@ -21,12 +21,8 @@ namespace AuctionService.Models.Entities.Items
             builder.Property(i => i.Color)
                 .HasMaxLength(DbConstants.VARCHAR_STRING_LENGTH_35);
 
-            builder.Property(i => i.CreatedAt)
-                .HasDefaultValueSql(DbConstants.CURRENT_TIMESTAMP);
-
-            builder.Property(i => i.IsDeleted)
-                .HasDefaultValue(DbConstants.DEFAULT_IS_FALSE);
-
+            builder.Property(i => i.ImageUrl)
+                .HasColumnType("text");
 
             // Relations
             builder.HasOne(i => i.Auction)

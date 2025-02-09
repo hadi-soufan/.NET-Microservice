@@ -31,6 +31,14 @@ namespace AuctionService.Models.Entities.Items
         [Column("color")]
         public string Color { get; set; }
 
+        [Required]
+        [Column("mileage")]
+        public int Mileage { get; set; }
+
+        [Required]
+        [Column("image_url")]
+        public string ImageUrl { get; set; }
+
         [ForeignKey("AuctionId")]
         public Auction Auction { get; set; }
     }
