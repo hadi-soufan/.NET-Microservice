@@ -17,7 +17,9 @@ namespace AuctionService.RequestHelpers
                 .Map(dest => dest.Year, src => src.Item.Year)
                 .Map(dest => dest.Color, src => src.Item.Color)
                 .Map(dest => dest.Mileage, src => src.Item.Mileage)
-                .Map(dest => dest.ImageUrl, src => src.Item.ImageUrl);
+                .Map(dest => dest.ImageUrl, src => src.Item.ImageUrl)
+                .Map(dest => dest.CreatedAt, src => src.CreatedAt)
+                .Map(dest => dest.UpdatedAt, src => src.UpdatedAt);
 
             config.NewConfig<CreateAuctionRecord, Auction>()
                 .Map(dest => dest.Status, _ => Status.Live)
