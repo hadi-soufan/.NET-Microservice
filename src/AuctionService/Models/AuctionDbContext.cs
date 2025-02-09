@@ -1,8 +1,6 @@
 ﻿using AuctionService.Models.Entities.Auctions;
 using AuctionService.Models.Entities.Items;
 using Microsoft.EntityFrameworkCore;
-using System.Data;
-using System.Security;
 
 namespace AuctionService.Models
 {
@@ -18,13 +16,13 @@ namespace AuctionService.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DbContextOptions).Assembly);
+
+            modelBuilder.Entity<Auction>().HasData(AuctionSeed.GetPreconfiguredAuctions());
+            modelBuilder.Entity<Item>().HasData(ItemSeed.GetPreconfiguredItems());
+
             base.OnModelCreating(modelBuilder);
 
-            // seed data to all entities
-            //modelBuilder.Entity<Role>().HasData(RoleSeed.SeedData);
-
-
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DbContextOptions).Assembly);
         }
     }
 }
