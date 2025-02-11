@@ -1,6 +1,7 @@
 ﻿using AuctionService.Models;
 using AuctionService.Models.Entities.Auctions;
 using AuctionService.Models.Records.Auctions;
+using Mapster;
 using MapsterMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -37,14 +38,19 @@ namespace AuctionService.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<AuctionRecord>>> Retrieve()
+        public async Task<ActionResult<List<AuctionRecord>>> Retrieve(string date)
         {
-            var auctions = await _context.Auctions
-                .Include(a => a.Item)
+            var query = _context.Auctions
                 .OrderBy(a => a.Item.Make)
-                .ToListAsync();
+                .AsQueryable();
 
-            return _mapper.Map<List<AuctionRecord>>(auctions);
+            if (!string.IsNullOrEmpty(date))
+            {
+                query = query.Where(a => a.UpdatedAt
+                    .CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
+            }
+
+            return await query.ProjectToType<AuctionRecord>(_mapper.Config).ToListAsync();
         }
 
         [HttpGet("{id}")]
