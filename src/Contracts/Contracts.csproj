@@ -6,9 +6,4 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AuctionService\AuctionService.csproj" />
-    <ProjectReference Include="..\SearchService\SearchService.csproj" />
-  </ItemGroup>
-
 </Project>
