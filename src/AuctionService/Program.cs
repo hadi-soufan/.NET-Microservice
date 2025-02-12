@@ -1,7 +1,4 @@
 using AuctionService.Core.Extensions;
-using AuctionService.RequestHelpers;
-using Mapster;
-using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
