@@ -1,4 +1,5 @@
 ﻿using MassTransit;
+using SearchService.Cores.Consumers;
 
 namespace AuctionService.Core.Extensions
 {
@@ -8,6 +9,10 @@ namespace AuctionService.Core.Extensions
         {
             services.AddMassTransit(m =>
             {
+                m.AddConsumersFromNamespaceContaining<AuctionCreatedConsumer>();
+
+                m.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("search", false));
+
                 m.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.ConfigureEndpoints(context);
