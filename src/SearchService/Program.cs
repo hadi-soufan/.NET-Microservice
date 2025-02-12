@@ -1,3 +1,4 @@
+using AuctionService.Core.Extensions;
 using Polly;
 using Polly.Extensions.Http;
 using SearchService.Models;
@@ -10,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddHttpClient<AuctionServiceHttpClient>().AddPolicyHandler(GetPolicy());
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddRabbitMqMassTransit();
+builder.Services.AddMapsterConfiguration();
+
 
 var app = builder.Build();
 
