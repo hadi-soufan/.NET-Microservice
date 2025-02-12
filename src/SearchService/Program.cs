@@ -13,6 +13,7 @@ builder.Services.AddHttpClient<AuctionServiceHttpClient>().AddPolicyHandler(GetP
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddRabbitMqMassTransit();
+builder.Services.AddMapsterConfiguration();
 
 
 var app = builder.Build();
