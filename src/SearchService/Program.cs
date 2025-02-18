@@ -1,6 +1,6 @@
-using AuctionService.Core.Extensions;
 using Polly;
 using Polly.Extensions.Http;
+using SearchService.Cores.Extensions;
 using SearchService.Models;
 using SearchService.Services;
 using System.Net;
