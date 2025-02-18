@@ -2,17 +2,16 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
-
   <ItemGroup>
-      <PackageVersion Include="Mapster" Version="7.4.2-pre02" />
-      <PackageVersion Include="Mapster.DependencyInjection" Version="1.0.3-pre02" />
-      <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.7-develop.2216" />
-      <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
-      <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-      <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1" />
-      <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="9.0.1" />
-      <PackageVersion Include="MongoDB.Entities" Version="24.1.0" />
-      <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
+    <PackageVersion Include="Mapster" Version="7.4.2-pre02" />
+    <PackageVersion Include="Mapster.DependencyInjection" Version="1.0.3-pre02" />
+    <PackageVersion Include="MassTransit.EntityFrameworkCore" Version="8.3.7-develop.2216" />
+    <PackageVersion Include="MassTransit.RabbitMQ" Version="8.3.7-develop.2216" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Polly" Version="9.0.1" />
+    <PackageVersion Include="MongoDB.Entities" Version="24.1.0" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.3" />
   </ItemGroup>
-    
 </Project>
