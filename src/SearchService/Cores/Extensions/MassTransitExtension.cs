@@ -1,7 +1,7 @@
 ﻿using MassTransit;
 using SearchService.Cores.Consumers;
 
-namespace AuctionService.Core.Extensions
+namespace SearchService.Cores.Extensions
 {
     public static class MassTransitExtension
     {
@@ -15,6 +15,13 @@ namespace AuctionService.Core.Extensions
 
                 m.UsingRabbitMq((context, cfg) =>
                 {
+                    cfg.ReceiveEndpoint("search-auction-created", e =>
+                    {
+                        e.UseMessageRetry(r => r.Interval(5, 5));
+
+                        e.ConfigureConsumer<AuctionCreatedConsumer>(context);
+                    });
+
                     cfg.ConfigureEndpoints(context);
                 });
             });

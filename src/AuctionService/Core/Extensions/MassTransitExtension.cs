@@ -1,4 +1,6 @@
-﻿using MassTransit;
+﻿using AuctionService.Consumers;
+using AuctionService.Models;
+using MassTransit;
 
 namespace AuctionService.Core.Extensions
 {
@@ -8,6 +10,18 @@ namespace AuctionService.Core.Extensions
         {
             services.AddMassTransit(m =>
             {
+                m.AddEntityFrameworkOutbox<AuctionDbContext>(o =>
+                {
+                    o.QueryDelay = TimeSpan.FromSeconds(10);
+
+                    o.UsePostgres();
+                    o.UseBusOutbox();
+                });
+
+                m.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+
+                m.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
+
                 m.UsingRabbitMq((context, cfg) =>
                 {
                     cfg.ConfigureEndpoints(context);
