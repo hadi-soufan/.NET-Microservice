@@ -84,7 +84,6 @@ namespace AuctionService.Controllers
                 .FirstOrDefaultAsync(a => a.Id == id);
 
             if (auction is null)  return NotFound();
-            
 
             auction.Item.Make = updateAuctionRecord.Make ?? auction.Item.Make;
             auction.Item.Model = updateAuctionRecord.Model ?? auction.Item.Model;
@@ -92,11 +91,13 @@ namespace AuctionService.Controllers
             auction.Item.Color = updateAuctionRecord.Color ?? auction.Item.Color;
             auction.Item.Mileage = updateAuctionRecord.Mileage != 0 ? updateAuctionRecord.Mileage : auction.Item.Mileage;
 
+            await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
 
             var result = await _context.SaveChangesAsync() > 0;
+
             if (!result) return BadRequest("Could not save changes to the DB.");
 
-            return _mapper.Map<AuctionRecord>(auction);
+            return Ok();
         }
 
         [HttpPatch("{id}")]
@@ -108,6 +109,9 @@ namespace AuctionService.Controllers
             if (auction is null) return NotFound();
 
             auction.IsDeleted = true;
+
+            await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+
             var result = await _context.SaveChangesAsync() > 0;
             if (!result) return BadRequest("Could not save changes to the DB.");
             return _mapper.Map<AuctionRecord>(auction);
