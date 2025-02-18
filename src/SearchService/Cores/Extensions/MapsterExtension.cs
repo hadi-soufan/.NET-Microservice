@@ -2,7 +2,7 @@
 using MapsterMapper;
 using SearchService.RequestHelpers;
 
-namespace AuctionService.Core.Extensions
+namespace SearchService.Cores.Extensions
 {
     public static class MapsterExtension
     {
